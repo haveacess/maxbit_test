@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ApiController;
+use App\Http\Controllers\ApiProductsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -13,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/', [ApiController::class, 'index']);
+Route::get('/products', [ApiProductsController::class, 'index']);
+Route::post('/products', [ApiProductsController::class, 'store']);
+Route::get('/products/{id}', [ApiProductsController::class, 'show']);
+Route::put('/products/{id}', [ApiProductsController::class, 'update']);
+Route::delete('/products/{id}', [ApiProductsController::class, 'destroy']);
